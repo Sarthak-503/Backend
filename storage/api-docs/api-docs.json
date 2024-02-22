@@ -1,0 +1,519 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "DFA_help API Documentation",
+        "description": "API documentation of DFA_help",
+        "contact": {
+            "email": "amit@dataforall.org"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0",
+        "x-logo": {
+            "url": "https://via.placeholder.com/190x90.png?text=L5-Swagger"
+        }
+    },
+    "paths": {
+        "/api/adaptations": {
+            "get": {
+                "tags": [
+                    "Adaptations"
+                ],
+                "summary": "All the adaptations.",
+                "operationId": "getAllAdaptations",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/keys": {
+            "get": {
+                "tags": [
+                    "Adaptations"
+                ],
+                "summary": "All the keys related to the adaptation.",
+                "operationId": "getAllKeys",
+                "parameters": [
+                    {
+                        "name": "adaptation_id",
+                        "in": "query",
+                        "description": "Adaptation ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/create": {
+            "post": {
+                "tags": [
+                    "Adaptations"
+                ],
+                "summary": "Create a key in an adaptation.",
+                "operationId": "createKey",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "adaptation_id",
+                                    "title",
+                                    "parent_id"
+                                ],
+                                "properties": {
+                                    "adaptation_id": {
+                                        "description": "Adaptation ID",
+                                        "type": "string"
+                                    },
+                                    "parent_id": {
+                                        "description": "Parent ID",
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "description": "Title of the key",
+                                        "type": "string",
+                                        "example": "title"
+                                    },
+                                    "lang": {
+                                        "description": "Language",
+                                        "type": "string",
+                                        "example": "en"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/update": {
+            "put": {
+                "tags": [
+                    "Adaptations"
+                ],
+                "summary": "Update the data of a key.",
+                "operationId": "updateKey",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id",
+                                    "key",
+                                    "code",
+                                    "title",
+                                    "desc",
+                                    "purpose"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "Key ID",
+                                        "type": "string"
+                                    },
+                                    "key": {
+                                        "description": "Unique key",
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "description": "Code of the key",
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "description": "Title of the key",
+                                        "type": "string",
+                                        "example": "Dashboards"
+                                    },
+                                    "desc": {
+                                        "description": "Description of the key",
+                                        "type": "string",
+                                        "example": "Description"
+                                    },
+                                    "purpose": {
+                                        "description": "Purpose of the key",
+                                        "type": "string",
+                                        "example": "Purpose"
+                                    },
+                                    "lang": {
+                                        "description": "Language",
+                                        "type": "string",
+                                        "example": "en"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/keydata/{key}": {
+            "get": {
+                "tags": [
+                    "Adaptations"
+                ],
+                "summary": "All the details related to the key.",
+                "operationId": "getKeyData",
+                "parameters": [
+                    {
+                        "name": "key",
+                        "in": "path",
+                        "description": "Key ID (can be integer or string)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/delete": {
+            "put": {
+                "tags": [
+                    "Adaptations"
+                ],
+                "summary": "Delete a key.",
+                "operationId": "deleteKey",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "key"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "Key ID",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/forgot-password": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Generate Password Reset Token",
+                "operationId": "forgotPassword",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "description": "User Email",
+                                        "type": "string",
+                                        "example": "john@example.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/reset-password": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Reset the Password",
+                "operationId": "resetPassword",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "token",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "token": {
+                                        "description": "Token",
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "password": {
+                                        "description": "User password",
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Confirm Password",
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Login",
+                "operationId": "login",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "username",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "description": "Username",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "User password",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/user/settings/change-password": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Password Change",
+                "operationId": "changePassword",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "password": {
+                                        "description": "Password",
+                                        "type": "string"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Confirm password",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Logout",
+                "description": "User logout",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearer_token": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "security": [
+        {
+            "bearer_token": []
+        }
+    ]
+}
